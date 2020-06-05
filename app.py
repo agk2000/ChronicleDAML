@@ -3,6 +3,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_jwt import JWT, jwt_required, current_identity
 import requests, os
 from security import authenticate, identity
+from datetime import timedelta
 
 from resources.analyticstitle import Analytics
 from resources.allauthors import AllAuthors
@@ -18,7 +19,7 @@ app.secret_key = os.getenv('secret_key') #get from .env file
 api = Api(app)
 
 jwt = JWT(app, authenticate, identity)
-
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=21600)
 
 """/analyticstitle/<title>
     #get analytics for any article by title
