@@ -8,15 +8,6 @@ for i in range(5):
     password = os.getenv('password' + str(i+1))
     users.append(User(i+1,  username, password))
 
-"""
-users = [
-    User(1, 'chronuser1', 'af2KT9F.UFV!.k?m'),
-    User(2, 'chronuser2', 'nh+ucyyWrLW4+3.3'),
-    User(3, 'chronuser3', 'B`eB$3j+~-fW<sd+'),
-    User(4, 'chronuser4', 'KKVmkeJ,+`pPa2:n'),
-    User(5, 'chronuser5', 'Cv)Q]QJ/w5$:!}S8')
-]"""
-
 username_table = {u.username: u for u in users}
 userid_table = {u.id: u for u in users}
 
