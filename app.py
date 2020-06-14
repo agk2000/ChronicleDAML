@@ -10,7 +10,7 @@ from resources.allauthors import AllAuthors
 from resources.authorid import AuthorID
 from resources.tagcontent import TagContent
 from resources.contentid import ContentID
-from resources.allcontent import AllContent
+from resources.allcontentfifty import AllContentFifty
 from resources.alltags import AllTags
 from resources.authorcontent import Author
 
@@ -61,10 +61,10 @@ api.add_resource(TagContent, '/tagcontent/<string:name>')
 api.add_resource(AllAuthors, '/allauthors')
 
 """#/allcontent
-    #gets all content items
+    #gets page of fifty content items
     # Arguments:
-    # Response: all author items"""
-api.add_resource(AllContent, '/allcontent')
+    # Response: fifty content items by page number"""
+api.add_resource(AllContentFifty, '/allcontentfifty/<string:name>')
 
 """#/alltags
     #gets all tag items
