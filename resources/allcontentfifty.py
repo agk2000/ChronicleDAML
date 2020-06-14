@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import requests, os
 
 class AllContentFifty(Resource):
-    #@jwt_required()
+    @jwt_required()
     def get(self,  name):
         private_key1 = os.getenv('private_key1') #get from .env file
         public_key1 = os.getenv('public_key1') #get from .env file
