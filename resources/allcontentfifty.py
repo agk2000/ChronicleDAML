@@ -14,5 +14,4 @@ class AllContentFifty(Resource):
         header = {'Authorization': 'Bearer ' + encoded_jwt_str}
         payload = {'page':name}
         r = requests.get('https://dtc.ceo.getsnworks.com/v3/content', headers = header, params=payload)
-        newlist = r.json().get('items', [])
-        return newlist
+        return r.json()
