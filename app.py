@@ -24,6 +24,7 @@ app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=21600)
 """/analyticstitle/<title>
     #get analytics for any article by title
     # Arguments: query string with parameter keys title, startdate, enddate, parameters*
+        #searchyb allows title to be passed as header instead
         #Default values are startdate:2008-01-1, enddate:today, parameters:['ga:timeOnPage']
         #startdate must be after 2005-01-01
         #startdate can also be '7daysAgo'
@@ -71,27 +72,6 @@ api.add_resource(AllContentFifty, '/allcontentfifty/<string:name>')
     # Arguments:
     # Response: all tag items"""
 api.add_resource(AllTags, '/alltags')
-
-
-"""
-A few tags
-    1: "Top Stories"
-    2: "Sports"
-    3: "Entertainment"
-    4: "Opinion"
-    5: "news"
-    12: "basketball"
-    17: "letter to the editor"
-    19: "Academics"
-    20: "student life"
-    34: "Column"
-    59: "topstory"
-    71: "newsletter-top"
-    88: "editors note"
-    6386: "Zion Williamson"
-    6501: "topstory-featured"
-    6513: "coronavirus"
-"""
 
 
 if __name__ == '__main__':
