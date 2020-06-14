@@ -66,7 +66,7 @@ class Analytics(Resource):
     @jwt_required()
     def get(self, name):
         analytics = Analytics.initialize_analyticsreporting()
-        if name == 'searchyb':
+        if name == 'searchhead':
             content = request.headers.get('title')
         else:
             content = request.args.get('title')
