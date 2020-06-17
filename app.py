@@ -9,7 +9,7 @@ from resources.analyticstitle import Analytics, AnalyticsClean
 from resources.allauthors import AllAuthors
 from resources.authorid import AuthorID
 from resources.tagcontent import TagContent
-from resources.contentid import ContentID
+from resources.contentid import ContentID, ContentIDClean, ContentIDTags, ContentIDAuthors
 from resources.allcontentfifty import AllContentFifty
 from resources.alltags import AllTags
 from resources.authorcontent import Author
@@ -49,6 +49,9 @@ api.add_resource(Author, '/authorcontent/<string:name>')
     # Arguments: content uuid
     # Response: content item json with all relevant info (content id, uuid, title, abstract, content, author, creation/publish date, etc.)"""
 api.add_resource(ContentID, '/contentid/<string:name>')
+api.add_resource(ContentIDClean, '/contentid/clean/<string:name>')
+api.add_resource(ContentIDTags, '/contentid/cleantags/<string:name>')
+api.add_resource(ContentIDAuthors, '/contentid/cleanauthors/<string:name>')
 
 """#/tagcontent/<tag_name>
     #gets content item given tags
