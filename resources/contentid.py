@@ -35,6 +35,7 @@ class ContentIDClean(Resource):
             for content_tag in unclean_tag_list:
                 clean_tag_list.append(content_tag.get('name'))
             cleaned_response['tags'] = clean_tag_list
+            cleaned_response['keywords'] = article.get('keywords')
 
         return cleaned_response
 

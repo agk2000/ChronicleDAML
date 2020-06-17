@@ -30,14 +30,14 @@ app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=21600)
         #startdate can also be '7daysAgo'
     # Response: json with all page analytics deata for the given metrics"""
 api.add_resource(Analytics, '/analyticstitle/<string:name>')
-api.add_resource(AnalyticsClean, '/analyticstitle/clean/<string:name>')
+api.add_resource(AnalyticsClean, '/analyticstitle/clean/<string:name>') #cleaned version
 
 """/authorid/<author_uuid>
     #gets all author item info given uuid
     # Arguments: author uuid
     # Response: author item json with author id, uuid, slug, name, email, tagline, description, status of author, etc."""
 api.add_resource(AuthorID, '/authorid/<string:name>')
-api.add_resource(AuthorIDClean, '/authorid/clean/<string:name>')
+api.add_resource(AuthorIDClean, '/authorid/clean/<string:name>') #just name of author
 
 """/author/<author_name>
     #gets all articles (content items) given author
@@ -50,9 +50,9 @@ api.add_resource(Author, '/authorcontent/<string:name>')
     # Arguments: content uuid
     # Response: content item json with all relevant info (content id, uuid, title, abstract, content, author, creation/publish date, etc.)"""
 api.add_resource(ContentID, '/contentid/<string:name>')
-api.add_resource(ContentIDClean, '/contentid/clean/<string:name>')
-api.add_resource(ContentIDTags, '/contentid/cleantags/<string:name>')
-api.add_resource(ContentIDAuthors, '/contentid/cleanauthors/<string:name>')
+api.add_resource(ContentIDClean, '/contentid/clean/<string:name>') #just id, uuid, type, content, title, slug, version, abstract, content, published_at, authors, keywords
+api.add_resource(ContentIDTags, '/contentid/cleantags/<string:name>') #just tags of content
+api.add_resource(ContentIDAuthors, '/contentid/cleanauthors/<string:name>') #just authors of content
 
 """#/tagcontent/<tag_name>
     #gets content item given tags
