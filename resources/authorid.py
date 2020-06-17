@@ -14,3 +14,10 @@ class AuthorID(Resource):
         header = {'Authorization': 'Bearer ' + encoded_jwt_str}
         r = requests.get('https://dtc.ceo.getsnworks.com/v3/author/'+name, headers = header)
         return r.json()
+
+class AuthorIDClean(Resource):
+    @jwt_required()
+    def get(self, name):
+        init_response = AuthorID.get(self, name)
+        clean_response = init_response[0].get('name')
+        return clean_response
