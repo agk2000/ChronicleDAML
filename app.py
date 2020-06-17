@@ -5,7 +5,7 @@ import requests, os
 from security import authenticate, identity
 from datetime import timedelta
 
-from resources.analyticstitle import Analytics
+from resources.analyticstitle import Analytics, AnalyticsClean
 from resources.allauthors import AllAuthors
 from resources.authorid import AuthorID
 from resources.tagcontent import TagContent
@@ -30,6 +30,7 @@ app.config['JWT_EXPIRATION_DELTA'] = timedelta(seconds=21600)
         #startdate can also be '7daysAgo'
     # Response: json with all page analytics deata for the given metrics"""
 api.add_resource(Analytics, '/analyticstitle/<string:name>')
+api.add_resource(AnalyticsClean, '/analyticstitle/clean/<string:name>')
 
 """/authorid/<author_uuid>
     #gets all author item info given uuid

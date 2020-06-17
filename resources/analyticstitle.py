@@ -72,7 +72,22 @@ class Analytics(Resource):
             content = request.args.get('title')
         start_date = request.args.get('startdate', default = '2008-01-01')
         end_date = request.args.get('enddate', default = 'today')
-        parameters = request.args.getlist('parameters')#, default=['ga:timeOnPage'])
+        parameters = request.args.getlist('parameters')
+        response = Analytics.get_report(analytics, content, start_date, end_date, *parameters)
+        return response
+
+
+class AnalyticsClean(Resource):
+    @jwt_required()
+    def get(self, name):
+        analytics = Analytics.initialize_analyticsreporting()
+        if name == 'searchhead':
+            content = request.headers.get('title')
+        else:
+            content = request.args.get('title')
+        start_date = request.args.get('startdate', default = '2008-01-01')
+        end_date = request.args.get('enddate', default = 'today')
+        parameters = request.args.getlist('parameters')
         response = Analytics.get_report(analytics, content, start_date, end_date, *parameters)
         cleaned_response = Analytics.clean_response(response)
         return cleaned_response
