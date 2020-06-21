@@ -8,7 +8,7 @@ from datetime import timedelta
 from resources.analyticstitle import Analytics, AnalyticsClean
 from resources.allauthors import AllAuthors
 from resources.authorid import AuthorID, AuthorIDClean
-from resources.tagcontent import TagContent
+from resources.tagcontent import TagContent, TagContentClean
 from resources.contentid import ContentID, ContentIDClean, ContentIDTags, ContentIDAuthors
 from resources.allcontentfifty import AllContentFifty, AllContentFiftyClean
 from resources.alltags import AllTags
@@ -60,6 +60,7 @@ api.add_resource(ContentIDAuthors, '/contentid/cleanauthors/<string:name>') #jus
     # Arguments: tag name
     # Response: content item jsons"""
 api.add_resource(TagContent, '/tagcontent/<string:name>')
+api.add_resource(TagContentClean, '/tagcontent/clean/<string:name>')
 
 """#/allauthors
     #gets all author items
