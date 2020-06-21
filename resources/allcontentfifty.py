@@ -15,3 +15,32 @@ class AllContentFifty(Resource):
         payload = {'page':name}
         r = requests.get('https://dtc.ceo.getsnworks.com/v3/content', headers = header, params=payload)
         return r.json()
+
+class AllContentFiftyClean(Resource):
+    def clean_response(unclean_response):
+        copy_variables = ['id', 'uuid', 'type', 'title', 'slug', 'created_at', 'modified_at', 'published_at', 'version', 'content', 'abstract']
+        cleaned_response = {}
+        for variable in copy_variables:
+            cleaned_response[variable] = unclean_response.get(variable)
+
+        unclean_tag_list = unclean_response.get('tags', [])
+        clean_tag_list = []
+        for content_tag in unclean_tag_list:
+            clean_tag_list.append(content_tag.get('name'))
+        cleaned_response['tags'] = clean_tag_list
+        cleaned_response['keywords'] = unclean_response.get('keywords')
+
+        return cleaned_response
+
+    @jwt_required()
+    def get(self,  name):
+        init_response = (AllContentFifty.get(self, name)).get('items', [])
+        cleaned_content_list = []
+        for item in init_response:
+            cleaned_dict = AllContentFiftyClean.clean_response(item)
+            cleaned_content_list.append(cleaned_dict)
+
+        clean_dict = {}
+        clean_dict['items'] = cleaned_content_list
+
+        return clean_dict
