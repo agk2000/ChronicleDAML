@@ -3,6 +3,7 @@ from flask_jwt import jwt_required
 import jwt as jwt_s
 from datetime import datetime, timedelta
 import requests, os
+from resources.allcontentfifty import AllContentFiftyClean
 
 class Author(Resource):
     @jwt_required()
@@ -20,3 +21,14 @@ class Author(Resource):
             newlist = r.json().get('items', [])
             item_list.extend(newlist)
         return item_list
+
+
+class AuthorClean(Resource):
+    @jwt_required()
+    def get(self, name):
+        init_response = Author.get(self, name)
+        cleaned_content_list = []
+        for item in init_response:
+            cleaned_dict = AllContentFiftyClean.clean_response(item)
+            cleaned_content_list.append(cleaned_dict)
+        return cleaned_content_list

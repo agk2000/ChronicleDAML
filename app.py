@@ -12,7 +12,7 @@ from resources.tagcontent import TagContent
 from resources.contentid import ContentID, ContentIDClean, ContentIDTags, ContentIDAuthors
 from resources.allcontentfifty import AllContentFifty, AllContentFiftyClean
 from resources.alltags import AllTags
-from resources.authorcontent import Author
+from resources.authorcontent import Author, AuthorClean
 
 app = Flask(__name__)
 app.secret_key = os.getenv('secret_key') #get from .env file
@@ -44,6 +44,7 @@ api.add_resource(AuthorIDClean, '/authorid/clean/<string:name>') #just name of a
     # Arguments: url encoded author name
     # Response: content item json with all articles by a given author (content id, uuid, title, slug, type, abstract, content, etc.)"""
 api.add_resource(Author, '/authorcontent/<string:name>')
+api.add_resource(AuthorClean, '/authorcontent/clean/<string:name>')
 
 """#/contentid/<content_uuid>
     #gets content item given content uuid
