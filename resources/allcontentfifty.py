@@ -18,7 +18,7 @@ class AllContentFifty(Resource):
 
 class AllContentFiftyClean(Resource):
     def clean_response(unclean_response):
-        copy_variables = ['id', 'uuid', 'type', 'title', 'slug', 'created_at', 'modified_at', 'published_at', 'version', 'content', 'abstract']
+        copy_variables = ['id', 'uuid', 'type', 'title', 'slug', 'created_at', 'modified_at', 'published_at', 'version', 'abstract', 'content']
         cleaned_response = {}
         for variable in copy_variables:
             cleaned_response[variable] = unclean_response.get(variable)
